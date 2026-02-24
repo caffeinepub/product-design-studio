@@ -1,0 +1,96 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-24T10:33:26.744Z",
+  "summary": "The diff implements most of the requested requirements. The frontend has product selector, design canvas with drag/resize/delete, color picker, design toolbar, save/load functionality, and the artisan visual theme. The backend implements design storage. However, several discrepancies exist: the backend uses different product types than specified (hat/mug/custom vs shirt/jug), the backend exposes saveProject/getMyProjects/deleteProject rather than the exact saveDesign/getDesign/listDesigns/deleteDesign function names required, stable storage is not evidenced, and the Color tool mode is defined in ToolMode but not present as a distinct toolbar button in DesignToolbar.",
+  "missing_requirements": [
+    {
+      "id": "REQ-6",
+      "requirement": "Backend actor exposes functions: saveDesign, getDesign, listDesigns, deleteDesign",
+      "reason": "The backend exposes saveProject, getMyProjects, deleteProject — not saveDesign, getDesign, listDesigns, deleteDesign as specified. The function getDesign (retrieve a single design by ID) is missing entirely.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Design data is persisted in stable storage",
+      "reason": "The backend uses Map.empty which is heap-allocated. No stable variable declarations or system upgrade hooks are visible in the truncated backend code to confirm stable storage.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Toolbar contains at minimum: Select, Add Text, Add Shape, Color tools",
+      "reason": "DesignToolbar only shows Select, Add Text, Add Shape tools. There is no dedicated Color tool button in the toolbar, even though colorPicker is a valid ToolMode in types.",
+      "evidence": [
+        "frontend/src/components/DesignToolbar.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User authentication with Internet Identity login/logout flow including profile setup modal",
+      "reason": "The build request explicitly lists user authentication or account management as a non-goal. The diff adds LoginButton, ProfileSetupModal, useInternetIdentity integration, and user profile save/get functionality.",
+      "evidence": [
+        "frontend/src/components/LoginButton.tsx",
+        "frontend/src/components/ProfileSetupModal.tsx",
+        "frontend/src/components/AppSidebar.tsx",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Backend product types include hat and custom instead of shirt and jug",
+      "reason": "The spec requires t-shirt, shirt, cup, jug as product types. The backend defines #tShirt, #hat, #mug, #custom — replacing shirt with hat and jug with custom.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Access control and authorization system with admin and user permission roles",
+      "reason": "The build request does not mention any authorization or access control system. The backend imports and uses MixinAuthorization and AccessControl modules with user/admin permission checks on all operations.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "User profile management including getCallerUserProfile, getUserProfile, saveCallerUserProfile",
+      "reason": "User account and profile management is explicitly listed as a non-goal in the build request.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    }
+  ],
+  "confidence": 0.82,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AppSidebar.tsx",
+    "frontend/src/components/ColorPicker.tsx",
+    "frontend/src/components/DesignCanvas.tsx",
+    "frontend/src/components/DesignToolbar.tsx",
+    "frontend/src/components/ElementProperties.tsx",
+    "frontend/src/components/LoginButton.tsx",
+    "frontend/src/components/ProductSelector.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "frontend/src/components/ProjectList.tsx",
+    "frontend/src/components/SaveDesignButton.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useDesignState.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/types/design.ts",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

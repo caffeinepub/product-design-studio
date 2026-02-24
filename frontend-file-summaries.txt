@@ -1,0 +1,18 @@
+{
+  "frontend/src/index.css": "Global styles with artisan workshop OKLCH color system, DM Sans/DM Serif Display fonts, canvas grid utility, and sidebar dark theme tokens.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with DM Sans/Serif fonts, craft palette tokens (amber, charcoal, cream), custom shadows, and fade-in animation.",
+  "frontend/src/types/design.ts": "TypeScript types for the design system including ProductType, DesignElement, ToolMode, ShapeKind, Position, Size, and product label/image maps.",
+  "frontend/src/hooks/useDesignState.ts": "Custom React hook managing all design canvas state including elements, product type, base color, tool mode, and CRUD operations — with the unused `uuid` import removed and using the local `generateId` helper instead.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations: user profile (get/save) and project operations (get list, save, delete) with proper cache invalidation.",
+  "frontend/src/components/LoginButton.tsx": "Login/logout button using Internet Identity with loading states, styled for the dark sidebar theme.",
+  "frontend/src/components/ProfileSetupModal.tsx": "First-time user profile setup modal that prompts for a name, shown only when authenticated with no existing profile.",
+  "frontend/src/components/ProductSelector.tsx": "Grid-based product type selector (T-Shirt, Shirt, Cup, Jug) with product images, active highlighting, and tooltips.",
+  "frontend/src/components/ColorPicker.tsx": "Reusable color picker with native color input, hex display, and preset color swatches styled for the dark sidebar.",
+  "frontend/src/components/DesignToolbar.tsx": "Tool selection panel with Select/Add Text/Add Shape tools, shape type sub-selector, and delete selected element button.",
+  "frontend/src/components/ElementProperties.tsx": "Properties panel for the selected design element showing text content, font size slider, color picker, and width/height inputs.",
+  "frontend/src/components/DesignCanvas.tsx": "Interactive design canvas with product image base layer, draggable/resizable/deletable design elements, resize handles, and keyboard delete support.",
+  "frontend/src/components/ProjectList.tsx": "Saved projects list with load and delete actions, loading skeletons, and empty state, fetching from the backend.",
+  "frontend/src/components/SaveDesignButton.tsx": "Save design button that opens a naming dialog and persists the current design state to the backend with toast feedback.",
+  "frontend/src/components/AppSidebar.tsx": "Dark charcoal sidebar composing all tool panels (product selector, toolbar, color picker, element properties, projects) with user profile display.",
+  "frontend/src/App.tsx": "Root app component wiring the design studio layout (sidebar + canvas), profile setup modal, theme provider, tooltip provider, and footer attribution."
+}

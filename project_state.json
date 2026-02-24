@@ -1,0 +1,105 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "A product design app where users can design custom merchandise items such as t-shirts, shirts, cups, jugs, and other products.",
+  "architectural_notes": [
+    "Canvas-based design editor (e.g., Fabric.js or Konva.js) for rendering and manipulating design elements on product mockups"
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Flat front-view outline illustration of a t-shirt in a neutral gray with clean edges, suitable as a design canvas base (product-tshirt.dim_600x600.png)\n- Flat front-view outline illustration of a dress shirt in a neutral gray with collar and buttons visible, suitable as a design canvas base (product-shirt.dim_600x600.png)\n- Flat side-view outline illustration of a ceramic mug/cup in neutral gray, suitable as a design canvas base (product-cup.dim_600x600.png)\n- Flat side-view outline illustration of a water jug/pitcher in neutral gray, suitable as a design canvas base (product-jug.dim_600x600.png)\n- Warm textured off-white background with subtle fabric/linen grain pattern for the app background (bg-texture.dim_1920x1080.png)\n- DesignCraft Studio wordmark logo in bold modern sans-serif, charcoal text on transparent background (logo-wordmark.dim_400x80.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-product-selector-panel-that-allows-users-to-choose-from-multiple-merchandise-categories-t-shirts-shirts-cups-and-jugs-each-product-type-should-have-a-distinct-silhouette-outline-used-as-the-design-canvas-base",
+      "title": "Create a product selector panel that allows users to choose from multiple merchandise categories: t-shirts, shirts, cups, and jugs. Each product type should have a distinct silhouette/outline used as the design canvas base.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-interactive-design-canvas-where-users-can-place-and-manipulate-design-elements-text-shapes-color-fills-on-top-of-the-selected-product-outline-elements-should-be-draggable-resizable-and-deletable",
+      "title": "Implement an interactive design canvas where users can place and manipulate design elements (text, shapes, color fills) on top of the selected product outline. Elements should be draggable, resizable, and deletable.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-a-color-picker-tool-that-allows-users-to-change-the-base-color-of-the-selected-product-e-g-t-shirt-color-cup-color-and-the-fill-stroke-color-of-individual-design-elements",
+      "title": "Provide a color picker tool that allows users to change the base color of the selected product (e.g., t-shirt color, cup color) and the fill/stroke color of individual design elements.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-design-toolbar-with-tools-for-adding-text-adding-shapes-selecting-moving-elements-and-changing-colors-the-toolbar-should-clearly-indicate-the-currently-active-tool",
+      "title": "Add a design toolbar with tools for: adding text, adding shapes, selecting/moving elements, and changing colors. The toolbar should clearly indicate the currently active tool.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-save-design-feature-that-persists-the-current-design-product-type-base-color-and-all-design-elements-with-their-properties-to-the-backend-so-users-can-retrieve-their-saved-designs",
+      "title": "Implement a save design feature that persists the current design (product type, base color, and all design elements with their properties) to the backend so users can retrieve their saved designs.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-bold-modern-artisan-workshop-visual-theme-throughout-the-app-use-warm-off-white-and-charcoal-tones-with-vivid-accent-colors-e-g-amber-or-coral-use-clean-sans-serif-typography-a-structured-two-panel-layout-tools-sidebar-canvas-area-and-craft-inspired-ui-details-enforce-this-style-consistently-across-all-pages-and-components",
+      "title": "Apply a bold, modern artisan workshop visual theme throughout the app. Use warm off-white and charcoal tones with vivid accent colors (e.g., amber or coral). Use clean sans-serif typography, a structured two-panel layout (tools sidebar + canvas area), and craft-inspired UI details. Enforce this style consistently across all pages and components.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Product design canvas with support for multiple product types (t-shirts, shirts, cups, jugs, etc.)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Product selector to switch between different merchandise items",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Design tools: add text, images/graphics, colors, and shapes onto products",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Preview of the design applied on the selected product (mockup view)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Save and export designed product",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Build a backend data model to store design projects. Each design should record: a unique ID, product type, base color, list of design elements (type, position, size, content, color), and creation timestamp.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Product Design Studio",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

@@ -1,0 +1,157 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Custom Merchandise Design App - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create a product selector panel for choosing merchandise categories with visual highlighting",
+      "acceptanceCriteria": [
+        "At least four product types are available: t-shirt, shirt, cup, jug",
+        "Selecting a product updates the canvas to display that product's shape",
+        "Active product is visually highlighted in the selector panel"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductSelector.tsx",
+          "operation": "create",
+          "description": "Create a product selector component that displays four merchandise categories (t-shirt, shirt, cup, jug) with clickable buttons. Each product type displays its corresponding silhouette from the generated assets (frontend/public/assets/generated/product-tshirt.dim_600x600.png, product-shirt.dim_600x600.png, product-cup.dim_600x600.png, product-jug.dim_600x600.png). Implement visual highlighting for the active selection and emit selection events to parent components."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement interactive design canvas with draggable, resizable, and deletable elements",
+      "acceptanceCriteria": [
+        "Users can add text with customizable font size and color",
+        "Users can add basic shapes (rectangle, circle, triangle) with customizable fill colors",
+        "Design elements can be moved by dragging",
+        "Design elements can be resized via handles",
+        "Design elements can be deleted via a delete button or key"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/DesignCanvas.tsx",
+          "operation": "create",
+          "description": "Create the main design canvas component that overlays design elements on top of the selected product silhouette. Implement drag-and-drop functionality for moving elements, resize handles for scaling elements, and deletion via delete key or button. Support adding text elements with customizable font size and color, and basic shapes (rectangle, circle, triangle) with customizable fill colors. Use HTML5 canvas or SVG for rendering. The canvas should display the currently selected product image as the base layer."
+        },
+        {
+          "path": "frontend/src/hooks/useDesignState.ts",
+          "operation": "create",
+          "description": "Create a custom hook to manage the design state including: selected product type, base product color, array of design elements (with type, position, size, content, color properties), active tool mode, and selected element. Provide functions to add, update, delete, and select elements. This hook serves as the single source of truth for the canvas state."
+        },
+        {
+          "path": "frontend/src/types/design.ts",
+          "operation": "create",
+          "description": "Define TypeScript types for design data structures: ProductType enum (tshirt, shirt, cup, jug), DesignElementType enum (text, shape), DesignElement interface (id, type, position, size, content, color), Position interface (x, y), Size interface (width, height), and ToolMode enum (select, addText, addShape, colorPicker)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Provide color picker for product base color and design element colors",
+      "acceptanceCriteria": [
+        "A color picker is accessible from the toolbar",
+        "Changing product base color updates the product silhouette/fill color",
+        "Changing element color updates the selected element's fill or text color"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ColorPicker.tsx",
+          "operation": "create",
+          "description": "Create a color picker component that allows users to select colors for either the product base color or individual design elements. Use HTML5 color input or a third-party color picker widget. Emit color change events to update the design state via the useDesignState hook. The component should indicate whether it's changing product color or element color based on context."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add design toolbar with tool selection and active tool indication",
+      "acceptanceCriteria": [
+        "Toolbar contains at minimum: Select, Add Text, Add Shape, Color tools",
+        "Active tool is visually distinguished",
+        "Clicking a toolbar button activates that tool mode on the canvas"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/DesignToolbar.tsx",
+          "operation": "create",
+          "description": "Create a toolbar component with buttons for Select, Add Text, Add Shape, and Color Picker tools. Visually highlight the active tool using distinct styling. On tool button click, update the active tool mode in the useDesignState hook. The toolbar should be positioned in the sidebar area for easy access."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Implement save design feature with backend persistence and user feedback",
+      "acceptanceCriteria": [
+        "A 'Save Design' button is present in the UI",
+        "Clicking it sends the design data to the backend and stores it",
+        "A success confirmation is shown after saving",
+        "Saved designs can be listed and loaded back into the canvas"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SaveDesignButton.tsx",
+          "operation": "create",
+          "description": "Create a Save Design button component that calls the backend saveProject function with the current design state (product type, base color, design elements, and project name). Show a success toast/notification after successful save. Handle errors gracefully with user-friendly error messages. The component should prompt the user for a project name if not already set. Use the authorization component to ensure only authenticated users can save designs."
+        },
+        {
+          "path": "frontend/src/components/ProjectList.tsx",
+          "operation": "create",
+          "description": "Create a component that lists the user's saved design projects by calling the backend getMyProjects function. Display project names, product types, and creation timestamps. Each list item should have a Load button that populates the canvas with the saved design data, and a Delete button that calls the backend deleteProject function. Use the authorization component's authentication context to ensure only authenticated users can view their projects. Verify the authorization component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useProjects.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for project operations: useSaveProject (mutation), useGetMyProjects (query), useLoadProject (mutation for loading project data into state), and useDeleteProject (mutation). These hooks interact with the backend interface methods (saveProject, getMyProjects, getProject, deleteProject) and manage loading/error states."
+        },
+        {
+          "path": "frontend/src/components/LoginButton.tsx",
+          "operation": "create",
+          "description": "Create a login button component following the authorization component's usage instructions. Use the useInternetIdentity hook to handle login/logout. On logout, clear the React Query cache. Display 'Login', 'Logout', or 'Logging in...' based on authentication status. Style the button to match the artisan workshop theme. Verify the authorization component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "create",
+          "description": "Create a modal component that prompts first-time users to enter their name. Use the authorization component's getCallerUserProfile to check if a profile exists, and saveCallerUserProfile to save the new profile. Follow the usage instructions for preventing profile setup modal flash by properly handling actor fetching states. Show this modal only when the user is authenticated, actor is loaded, profile query is complete, and no profile exists. Verify the authorization component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useUserProfile.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for user profile operations: useGetCallerUserProfile (query) and useSaveCallerUserProfile (mutation). Follow the authorization component's pattern for handling actor fetching states to prevent modal flash. Return custom state that includes actor dependency: isLoading accounts for both actorFetching and query.isLoading, and isFetched only returns true when actor is available. Verify the authorization component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply bold modern artisan workshop visual theme with warm tones and structured layout",
+      "acceptanceCriteria": [
+        "Color palette uses warm neutrals (off-white, charcoal) with one vivid accent",
+        "Layout uses a clear sidebar + main canvas split",
+        "Typography is clean and legible",
+        "All components follow the same visual language"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global styles to apply the artisan workshop theme. Set the body background to use the generated texture image (frontend/public/assets/generated/bg-texture.dim_1920x1080.png). Define CSS custom properties for the color palette: warm off-white (#F5F1ED), charcoal (#2C2C2C), and vivid accent color (amber #F59E0B). Apply clean sans-serif typography (use system fonts or import a web font). Ensure high contrast for legibility."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with custom colors matching the artisan workshop palette: warmWhite, charcoal, and accentAmber. Add custom spacing and typography settings to support the structured two-panel layout. Configure backgroundImage utilities for the texture asset."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a layout component that structures the app into a sidebar (tools, product selector, color picker, project list) and a main canvas area. The sidebar should use charcoal background with warm off-white text, and the canvas area should have a warm off-white background. Include the DesignCraft Studio logo (frontend/public/assets/generated/logo-wordmark.dim_400x80.png) in the header. Apply consistent spacing, borders, and craft-inspired visual details (e.g., subtle shadows, rounded corners)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire AppLayout, LoginButton, ProfileSetupModal, ProductSelector, DesignCanvas, DesignToolbar, ColorPicker, SaveDesignButton, and ProjectList into the main app. Use the authorization component's authentication context to conditionally render design features only when the user is logged in. Show the ProfileSetupModal when appropriate using the correct conditional logic. Display the LoginButton in the app header. Ensure the app structure matches the two-panel layout (sidebar with tools and project list, main area with canvas)."
+        }
+      ]
+    }
+  ]
+}

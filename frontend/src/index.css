@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Artisan Workshop Palette - Light */
+    --background: 0.97 0.008 75;
+    --foreground: 0.22 0.015 50;
+
+    --card: 0.99 0.004 75;
+    --card-foreground: 0.22 0.015 50;
+
+    --popover: 0.99 0.004 75;
+    --popover-foreground: 0.22 0.015 50;
+
+    --primary: 0.22 0.015 50;
+    --primary-foreground: 0.97 0.008 75;
+
+    --secondary: 0.93 0.018 75;
+    --secondary-foreground: 0.22 0.015 50;
+
+    --muted: 0.93 0.012 75;
+    --muted-foreground: 0.52 0.018 60;
+
+    --accent: 0.72 0.18 55;
+    --accent-foreground: 0.99 0.004 75;
+
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    --border: 0.88 0.018 70;
+    --input: 0.88 0.018 70;
+    --ring: 0.72 0.18 55;
+
+    /* Sidebar (dark charcoal) */
+    --sidebar: 0.22 0.015 50;
+    --sidebar-foreground: 0.93 0.012 75;
+    --sidebar-primary: 0.72 0.18 55;
+    --sidebar-primary-foreground: 0.99 0.004 75;
+    --sidebar-accent: 0.30 0.018 50;
+    --sidebar-accent-foreground: 0.93 0.012 75;
+    --sidebar-border: 0.30 0.018 50;
+    --sidebar-ring: 0.72 0.18 55;
+
+    /* Chart colors */
+    --chart-1: 0.72 0.18 55;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+  }
+
+  .dark {
+    --background: 0.18 0.015 50;
+    --foreground: 0.93 0.012 75;
+
+    --card: 0.22 0.015 50;
+    --card-foreground: 0.93 0.012 75;
+
+    --popover: 0.25 0.015 50;
+    --popover-foreground: 0.93 0.012 75;
+
+    --primary: 0.93 0.012 75;
+    --primary-foreground: 0.22 0.015 50;
+
+    --secondary: 0.28 0.015 50;
+    --secondary-foreground: 0.93 0.012 75;
+
+    --muted: 0.28 0.015 50;
+    --muted-foreground: 0.65 0.018 60;
+
+    --accent: 0.72 0.18 55;
+    --accent-foreground: 0.99 0.004 75;
+
+    --destructive: 0.704 0.191 22.216;
+    --destructive-foreground: 0.205 0 0;
+
+    --border: 0.30 0.018 50;
+    --input: 0.30 0.018 50;
+    --ring: 0.72 0.18 55;
+
+    --sidebar: 0.16 0.015 50;
+    --sidebar-foreground: 0.93 0.012 75;
+    --sidebar-primary: 0.72 0.18 55;
+    --sidebar-primary-foreground: 0.99 0.004 75;
+    --sidebar-accent: 0.22 0.015 50;
+    --sidebar-accent-foreground: 0.93 0.012 75;
+    --sidebar-border: 0.25 0.015 50;
+    --sidebar-ring: 0.72 0.18 55;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'DM Serif Display', serif;
+  }
+}
+
+@layer utilities {
+  .canvas-grid {
+    background-image:
+      linear-gradient(oklch(0.88 0.018 70) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.88 0.018 70) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .sidebar-dark {
+    background-color: oklch(var(--sidebar));
+    color: oklch(var(--sidebar-foreground));
+  }
+}

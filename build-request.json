@@ -1,0 +1,147 @@
+{
+  "kind": "build_request",
+  "title": "Custom Merchandise Design App",
+  "projectName": "DesignCraft Studio",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a product selector panel that allows users to choose from multiple merchandise categories: t-shirts, shirts, cups, and jugs. Each product type should have a distinct silhouette/outline used as the design canvas base.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "design t-shirts, shirts, cups, jugs etc."
+        ]
+      },
+      "acceptanceCriteria": [
+        "At least four product types are available: t-shirt, shirt, cup, jug",
+        "Selecting a product updates the canvas to display that product's shape",
+        "Active product is visually highlighted in the selector panel"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement an interactive design canvas where users can place and manipulate design elements (text, shapes, color fills) on top of the selected product outline. Elements should be draggable, resizable, and deletable.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "we can design t-shirts, shirts, cups, jugs etc."
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can add text with customizable font size and color",
+        "Users can add basic shapes (rectangle, circle, triangle) with customizable fill colors",
+        "Design elements can be moved by dragging",
+        "Design elements can be resized via handles",
+        "Design elements can be deleted via a delete button or key"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Provide a color picker tool that allows users to change the base color of the selected product (e.g., t-shirt color, cup color) and the fill/stroke color of individual design elements.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A color picker is accessible from the toolbar",
+        "Changing product base color updates the product silhouette/fill color",
+        "Changing element color updates the selected element's fill or text color"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a design toolbar with tools for: adding text, adding shapes, selecting/moving elements, and changing colors. The toolbar should clearly indicate the currently active tool.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Toolbar contains at minimum: Select, Add Text, Add Shape, Color tools",
+        "Active tool is visually distinguished",
+        "Clicking a toolbar button activates that tool mode on the canvas"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement a save design feature that persists the current design (product type, base color, and all design elements with their properties) to the backend so users can retrieve their saved designs.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Save Design' button is present in the UI",
+        "Clicking it sends the design data to the backend and stores it",
+        "A success confirmation is shown after saving",
+        "Saved designs can be listed and loaded back into the canvas"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Build a backend data model to store design projects. Each design should record: a unique ID, product type, base color, list of design elements (type, position, size, content, color), and creation timestamp.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend actor exposes functions: saveDesign, getDesign, listDesigns, deleteDesign",
+        "Design data is persisted in stable storage",
+        "Each design is uniquely identifiable by ID"
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a bold, modern artisan workshop visual theme throughout the app. Use warm off-white and charcoal tones with vivid accent colors (e.g., amber or coral). Use clean sans-serif typography, a structured two-panel layout (tools sidebar + canvas area), and craft-inspired UI details. Enforce this style consistently across all pages and components.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette uses warm neutrals (off-white, charcoal) with one vivid accent",
+        "Layout uses a clear sidebar + main canvas split",
+        "Typography is clean and legible",
+        "All components follow the same visual language"
+      ]
+    }
+  ],
+  "constraints": [
+    "All backend logic must reside in a single Motoko actor in backend/main.mo",
+    "Do not use external image editing libraries that require server-side processing",
+    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui"
+  ],
+  "nonGoals": [
+    "3D product rendering or augmented reality preview",
+    "User authentication or account management",
+    "Exporting designs as downloadable image files",
+    "Uploading custom user images to the design canvas",
+    "Payment or ordering functionality",
+    "Real-time collaborative editing"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Flat front-view outline illustration of a t-shirt in a neutral gray with clean edges, suitable as a design canvas base (product-tshirt.dim_600x600.png)",
+      "Flat front-view outline illustration of a dress shirt in a neutral gray with collar and buttons visible, suitable as a design canvas base (product-shirt.dim_600x600.png)",
+      "Flat side-view outline illustration of a ceramic mug/cup in neutral gray, suitable as a design canvas base (product-cup.dim_600x600.png)",
+      "Flat side-view outline illustration of a water jug/pitcher in neutral gray, suitable as a design canvas base (product-jug.dim_600x600.png)",
+      "Warm textured off-white background with subtle fabric/linen grain pattern for the app background (bg-texture.dim_1920x1080.png)",
+      "DesignCraft Studio wordmark logo in bold modern sans-serif, charcoal text on transparent background (logo-wordmark.dim_400x80.png)"
+    ],
+    "edits": []
+  }
+}
